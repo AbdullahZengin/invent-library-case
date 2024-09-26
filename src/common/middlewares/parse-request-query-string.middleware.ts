@@ -4,6 +4,13 @@ import { ApiError } from "../utils/errors/api.error.js";
 import { StatusCodes } from "http-status-codes";
 import { validateOptions } from "../config/validation-options.js";
 
+/**
+ *  Parse request query string middleware function that validates the request query string against a Joi schema.
+ *
+ * @param schema - Joi schema object to validate the request query string against.
+ * @returns Express middleware function that parses the request query string. If the request query string is invalid, it will return a 400 Bad Request error. Otherwise, it will call the next middleware function.
+ *
+ */
 export const parseRequestQueryStringMiddleware =
     (schema: Joi.ObjectSchema) =>
     (req: Request, res: Response, next: NextFunction) => {

@@ -4,6 +4,13 @@ import { ApiError } from "../utils/errors/api.error.js";
 import { StatusCodes } from "http-status-codes";
 import { validateOptions } from "../config/validation-options.js";
 
+/**
+ *  Parse request body middleware function that validates the request body against a Joi schema.
+ *
+ * @param schema - Joi schema object to validate the request body against.
+ * @returns Express middleware function that parses the request body. If the request body is invalid, it will return a 400 Bad Request error. Otherwise, it will call the next middleware function.
+ *
+ */
 export const parseRequestBodyMiddleware =
     (schema: Joi.ObjectSchema) =>
     (req: Request, res: Response, next: NextFunction) => {
