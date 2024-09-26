@@ -2,12 +2,12 @@ import { StatusCodes } from "http-status-codes";
 import { ApiError } from "../utils/errors/api.error.js";
 import { Request, Response, NextFunction } from "express";
 
-export function handleGlobalErrorMiddleware(
+export const handleGlobalErrorMiddleware = (
     err: ApiError | unknown,
     _req: Request,
     res: Response,
     next: NextFunction
-) {
+) => {
     let error = err;
     let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
     let message = "Something went wrong!";
@@ -22,4 +22,4 @@ export function handleGlobalErrorMiddleware(
     // }
 
     res.status(statusCode).json({ statusCode, message });
-}
+};
