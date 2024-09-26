@@ -1,0 +1,27 @@
+{
+    "name": "invent-library-case",
+    "description": "Invent Backend Interview Case",
+    "author": "Abdullah Zengin",
+    "license": "MIT",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev:tsc": "tsc --watch --preserveWatchOutput -p tsconfig.build.json",
+        "dev:node": "node --enable-source-maps --watch dist/index.js",
+        "dev": "npm run dev:tsc & npm run dev:node",
+        "build ": "tsc -p tsconfig.build.json",
+        "start": "node dist/index.js"
+    },
+    "devDependencies": {
+        "@types/dotenv": "^8.2.0",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.7.2",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.6.2"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "express": "^4.21.0"
+    }
+}
