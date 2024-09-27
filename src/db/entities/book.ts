@@ -9,8 +9,15 @@ export class Book {
     @Column()
     name!: string;
 
-    @Column({ default: -1, name: "score_avg" })
-    scoreAvg!: number;
+    @Column({
+        default: null,
+        name: "score_avg",
+        type: "numeric",
+        precision: 5,
+        scale: 2,
+        nullable: true,
+    })
+    score!: number;
 
     @OneToMany(() => Borrow, (borrow) => borrow.book)
     borrowedBooks!: Borrow[];
