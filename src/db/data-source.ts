@@ -8,11 +8,6 @@ dotenv.config();
 
 const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
 
-if (!DB_HOST || !DB_PORT || !DB_USERNAME || !DB_PASSWORD || !DB_DATABASE) {
-    console.error("Please set the environment variables");
-    process.exit(1);
-}
-
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: DB_HOST,
