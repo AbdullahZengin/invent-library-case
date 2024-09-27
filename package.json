@@ -4,7 +4,6 @@
     "author": "Abdullah Zengin",
     "license": "MIT",
     "version": "1.0.0",
-    "type": "module",
     "main": "dist/index.js",
     "scripts": {
         "dev:tsc": "tsc --watch --preserveWatchOutput -p tsconfig.build.json",
