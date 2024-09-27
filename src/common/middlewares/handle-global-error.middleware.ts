@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { ApiError } from "../utils/errors/api.error.js";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, ErrorRequestHandler } from "express";
 
 /**
  *  Middleware function that handles global errors.
@@ -10,11 +10,11 @@ import { Request, Response, NextFunction } from "express";
  * @returns Express Response object with the appropriate status code and error message.
  *
  */
-export const handleGlobalErrorMiddleware = (
+export const handleGlobalErrorMiddleware: ErrorRequestHandler = (
     err: ApiError | unknown,
     _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
 ) => {
     let error = err;
     let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
