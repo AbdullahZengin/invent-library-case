@@ -47,3 +47,20 @@ export const borrowBook = handleCatchAsyncMiddleware(
         res.status(StatusCodes.NO_CONTENT).send();
     }
 );
+
+/**
+ * Controller function that returns a book with a score for a user.
+ */
+export const returnBook = handleCatchAsyncMiddleware(
+    async (req: Request, res: Response) => {
+        const { userId, bookId } = req.params;
+        const { score } = req.body;
+        await userService.returnBook(
+            parseInt(userId!),
+            parseInt(bookId!),
+            score
+        );
+
+        res.status(StatusCodes.NO_CONTENT).send();
+    }
+);
