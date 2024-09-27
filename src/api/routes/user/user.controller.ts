@@ -35,3 +35,15 @@ export const createUser = handleCatchAsyncMiddleware(
         res.status(StatusCodes.CREATED).send();
     }
 );
+
+/**
+ * Controller function that borrows a book for a user.
+ */
+export const borrowBook = handleCatchAsyncMiddleware(
+    async (req: Request, res: Response) => {
+        const { userId, bookId } = req.params;
+        await userService.borrowBook(parseInt(userId!), parseInt(bookId!));
+
+        res.status(StatusCodes.NO_CONTENT).send();
+    }
+);
