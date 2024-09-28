@@ -10,7 +10,8 @@
         "dev:node": "node --enable-source-maps --watch dist/index.js",
         "dev": "npm run dev:tsc & npm run dev:node",
         "build ": "tsc -p tsconfig.build.json",
-        "start": "node dist/index.js"
+        "start": "node dist/index.js",
+        "postinstall": "npm run build"
     },
     "devDependencies": {
         "@types/dotenv": "^8.2.0",
