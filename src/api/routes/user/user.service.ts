@@ -4,6 +4,7 @@ import { AppDataSource } from "../../../db/data-source";
 import { Borrow } from "../../../db/entities/borrow";
 import { User } from "../../../db/entities/user";
 import { Book } from "../../../db/entities/book";
+import * as cache from "memory-cache";
 
 /**
  * Service class for user related operations.
@@ -185,6 +186,8 @@ class UserService {
                     .set({ score: calculatedScore })
                     .where("id = :bookId", { bookId })
                     .execute();
+
+                cache.del("book" + bookId);
             }
 
             await queryRunner.commitTransaction();

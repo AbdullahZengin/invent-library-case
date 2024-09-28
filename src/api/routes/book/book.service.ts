@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { ApiError } from "../../../common/utils/errors/api.error";
 import { AppDataSource } from "../../../db/data-source";
 import { Book } from "../../../db/entities/book";
+import * as cache from "memory-cache";
 
 /**
  * Service class for book related operations.
@@ -29,6 +30,11 @@ class BookService {
      * @throws ApiError when book is not found.
      */
     async getByIdWithScore(id: number) {
+        var cachedData = cache.get("book" + id);
+        if (cachedData) {
+            return cachedData;
+        }
+
         const book = await AppDataSource.getRepository(Book).findOne({
             where: { id },
             select: ["id", "name", "score"],
@@ -36,7 +42,14 @@ class BookService {
 
         if (!book) throw new ApiError(StatusCodes.NOT_FOUND, "Book not found");
 
-        return { id: book.id, name: book.name, score: book.score || -1 };
+        const result = {
+            id: book.id,
+            name: book.name,
+            score: book.score || -1,
+        };
+
+        cache.put("book" + id, result);
+        return result;
     }
 
     /**
